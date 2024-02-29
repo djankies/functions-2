@@ -1,29 +1,32 @@
 ////////// PROBLEM 1 //////////
 
 /*
-  Write a function called multiply that takes in three parameters: two numbers and a callback function.  
+  Write a function called multiply that 
+  takes in three parameters: two numbers and a callback function.  
+  
   Invoke the callback, passing in the product of the two numbers multiplied as the argument. 
 */
 
 // CODE HERE
 
+function multiply (num1, num2, callback) {
+  callback(num1 * num2)
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// multiply(4, 3, answer => {
-//   console.log('The answer is ' + answer) //should console.log 12
-// })
-
-
+multiply(4, 3, answer => {
+  console.log('The answer is ' + answer) //should console.log 12
+})
 
 ////////// PROBLEMS 2 - 6 //////////
 
 // The names array will be used in problems 2 - 6.
 
 // Do not edit the code below.
-var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
+var names = ['Tyler', 'Carl', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Carl']
 // Do not edit the code above.
 
 
@@ -37,14 +40,17 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 
 // CODE HERE 
 
+function first (arr, callback) {
+  callback(arr[0]);
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// first(names, firstName => {
-//   console.log('The first name in names is ' + firstName)
-// })
+first(names, firstName => {
+  console.log('The first name in names is ' + firstName)
+})
 
 
 
@@ -56,15 +62,18 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
+function last (arr, callback) {
+  callback(arr[arr.length -1]);
+}
 
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// last(names, lastName => {
-//   console.log('The last name in names is ' + lastName)
-// })
+last(names, lastName => {
+  console.log('The last name in names is ' + lastName)
+})
 
 
 
@@ -78,19 +87,25 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE 
-
+function contains(arr, name, callback) {
+  if (arr.includes(name)) {
+    callback(true);
+  } else {
+    callback(false);
+  }
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// contains(names, 'Colt', result => {
-//   if(result === true){
-//     console.log('Colt is in the array')
-//   } else {
-//     console.log('Colt is not in the array')
-//   }
-// })
+contains(names, 'colt', result => {
+  if(result === true){
+    console.log('Colt is in the array')
+  } else {
+    console.log('Colt is not in the array')
+  }
+})
 
 
 
@@ -103,17 +118,46 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE
+// function uniq(arr, callback) {
+//   for (let i = 0; i < names.length; i++) {
+//     for (let j = i; i < names.length; i++) {
+//       if (arr[i] === arr[j] && i !== j) {
+//         arr.splice([i], 1)
+//       }
+//     }
+//   }
+//   callback(arr)
+// }
+
+function uniq(arr, callback) {
+  for (let i = 0; i < names.length; i++) {
+    for (let j = i + 1; j < names.length; j++) {
+      if (arr[i] === arr[j]) {
+        arr.splice(i, 1)
+      }
+    }
+  }
+  callback(arr)
+}
 
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
+  
   The callback function should take in one parameter called uniqArr.
+  
   The callback should print a string that says:
+  
   'The new names array with all the duplicate items removed is [UNIQARRPARAM].'
 */
 
 // CODE HERE
 
+// IDK WHAT I WAS DOING
+function aFunction(uniqArr) {
+console.log(`The new names array with all the duplicate items removed is ${uniqArr}`)
+}
 
+uniq(names, aFunction)
 
 ////////// PROBLEM 6 //////////
 
@@ -123,6 +167,12 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 */
 
 // CODE HERE 
+
+function each (names, callback) {
+  for (let i = 0; i < names.length; i++) {
+    callback(names[i], i)
+  }
+}
 
 
 /*
@@ -134,7 +184,11 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
 
 // CODE HERE
 
+function cbNames(item, index) {
+  console.log(`The item at index ${index} is ${item}`)
+}
 
+each(names, cbNames)
 
 
 
@@ -241,6 +295,6 @@ var users = [
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-getUserById(users, '16t', user => {
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
-})
+// getUserById(users, '16t', user => {
+//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
+// })
